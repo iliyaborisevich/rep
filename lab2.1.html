@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ford Comparison | Mustang • Explorer • F-150</title>
+    <style>
+        :root {
+            --primary: #00274D;
+            --secondary: #FF5C00;
+            --accent: #0084FF;
+            --light: #F8F9FA;
+            --dark: #1A1A1A;
+            --gray: #6C757D;
+            --border: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #003366 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* Comparison Table */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #F8F9FA;
+        }
+
+        tr:hover {
+            background: #E3F2FD;
+        }
+
+        .highlight {
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Car Cards */
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-content {
+            padding: 1.5rem;
+        }
+
+        .car-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .car-price {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .car-features {
+            margin: 1rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Details & Progress */
+        details {
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1rem;
+            background: #F8F9FA;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:after {
+            content: "+";
+            float: right;
+            font-size: 1.2rem;
+        }
+
+        details[open] summary:after {
+            content: "-";
+        }
+
+        .details-content {
+            padding: 1rem;
+            background: white;
+        }
+
+        progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+
+        progress::-webkit-progress-bar {
+            background: #E0E0E0;
+            border-radius: 4px;
+        }
+
+        progress::-webkit-progress-value {
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+
+        /* Blockquote & Aside */
+        blockquote {
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #F8F9FA;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        aside {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">FORD</div>
+            <p class="subtitle">Сравнение трех легендарных моделей</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#comparison" class="nav-link active">Сравнение</a>
+            <a href="#mustang" class="nav-link">Mustang</a>
+            <a href="#explorer" class="nav-link">Explorer</a>
+            <a href="#f150" class="nav-link">F-150</a>
+            <a href="#conclusion" class="nav-link">Выводы</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="comparison" class="section">
+            <h2 class="section-title">Сравнительная таблица</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Характеристика</th>
+                            <th>Ford Mustang GT</th>
+                            <th>Ford Explorer Platinum</th>
+                            <th>Ford F-150 Raptor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Тип двигателя</td>
+                            <td>Бензиновый V8</td>
+                            <td>Гибридный V6</td>
+                            <td>EcoBoost V6 Twin-Turbo</td>
+                        </tr>
+                        <tr>
+                            <td>Мощность</td>
+                            <td><span class="highlight">450 л.с.</span></td>
+                            <td>365 л.с.</td>
+                            <td>450 л.с.</td>
+                        </tr>
+                        <tr>
+                            <td>Расход топлива</td>
+                            <td>13.1 л/100км</td>
+                            <td><span class="highlight">9.8 л/100км</span></td>
+                            <td>14.5 л/100км</td>
+                        </tr>
+                        <tr>
+                            <td>Коробка передач</td>
+                            <td>10-ст. автоматическая</td>
+                            <td>10-ст. автоматическая</td>
+                            <td>10-ст. автоматическая</td>
+                        </tr>
+                        <tr>
+                            <td>Габариты (Д×Ш×В)</td>
+                            <td>4789×1916×1382 мм</td>
+                            <td>5050×2004×1778 мм</td>
+                            <td><span class="highlight">5910×2199×1994 мм</span></td>
+                        </tr>
+                        <tr>
+                            <td>Объем багажника</td>
+                            <td>382 л</td>
+                            <td>518 л</td>
+                            <td><span class="highlight">1753 л</span></td>
+                        </tr>
+                        <tr>
+                            <td>Системы безопасности</td>
+                            <td>ABS, ESP, 6 подушек</td>
+                            <td>ABS, ESP, 8 подушек, ассистенты</td>
+                            <td>ABS, ESP, 6 подушек, камеры</td>
+                        </tr>
+                        <tr>
+                            <td>Рейтинг Euro NCAP</td>
+                            <td>★★★★</td>
+                            <td><span class="highlight">★★★★★</span></td>
+                            <td>★★★★</td>
+                        </tr>
+                        <tr>
+                            <td>Разгон 0-100 км/ч</td>
+                            <td><span class="highlight">4.3 сек</span></td>
+                            <td>6.1 сек</td>
+                            <td>5.8 сек</td>
+                        </tr>
+                        <tr>
+                            <td>Макс. скорость</td>
+                            <td><span class="highlight">250 км/ч</span></td>
+                            <td>210 км/ч</td>
+                            <td>180 км/ч</td>
+                        </tr>
+                        <tr>
+                            <td>Цена</td>
+                            <td>$42,000</td>
+                            <td>$52,000</td>
+                            <td>$68,000</td>
+                        </tr>
+                        <tr>
+                            <td>Wi-Fi / Bluetooth</td>
+                            <td>Есть / Есть</td>
+                            <td><span class="highlight">Есть / Есть</span></td>
+                            <td>Есть / Есть</td>
+                        </tr>
+                        <tr>
+                            <td>Тормозная система</td>
+                            <td>Дисковые вентилируемые</td>
+                            <td>Дисковые вентилируемые</td>
+                            <td>Дисковые вентилируемые</td>
+                        </tr>
+                        <tr>
+                            <td>Системы предотвращения столкновений</td>
+                            <td>Базовая</td>
+                            <td><span class="highlight">Co-Pilot360 Assist+</span></td>
+                            <td>Co-Pilot360</td>
+                        </tr>
+                        <tr>
+                            <td>Гарантия</td>
+                            <td>3 года / 60,000 км</td>
+                            <td>3 года / 60,000 км</td>
+                            <td><span class="highlight">5 лет / 100,000 км</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="cars-grid">
+            <!-- Mustang Card -->
+            <section id="mustang" class="car-card">
+                <img src="must.jpg" alt="Ford Mustang" class="car-image">
+                <div class="car-content">
+                    <h3 class="car-name">Ford Mustang GT</h3>
+                    <div class="car-price">от $42,000</div>
+                    <p>Легендарный американский мускул-кар с характерным дизайном и невероятной производительностью.</p>
+                    
+                    <div class="car-features">
+                        <ul class="feature-list">
+                            <li>Двигатель 5.0L V8</li>
+                            <li>Задний привод</li>
+                            <li>10-ступенчатая АКПП</li>
+                            <li>Цифровая приборная панель</li>
+                        </ul>
+                    </div>
+
+                    <details>
+                        <summary>Детали безопасности</summary>
+                        <div class="details-content">
+                            <p>Mustang GT оснащен современными системами безопасности, включая 6 подушек безопасности, систему стабилизации и помощь при экстренном торможении.</p>
+                            <div class="progress-item">
+                                <label>Рейтинг безопасности: 85%</label>
+                                <progress value="85" max="100"></progress>
+                            </div>
+                        </div>
+                    </details>
+
+                    <aside>
+                        <strong>Интересный факт:</strong> Mustang стал первым автомобилем, получившим премию "Car of the Year" в 1974 году.
+                    </aside>
+
+                    <blockquote>
+                        "Mustang GT - это не просто автомобиль, это символ американской мечты и свободы."
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- Explorer Card -->
+            <section id="explorer" class="car-card">
+                <img src="expl.jpg" alt="Ford Explorer" class="car-image">
+                <div class="car-content">
+                    <h3 class="car-name">Ford Explorer Platinum</h3>
+                    <div class="car-price">от $52,000</div>
+                    <p>Премиальный семейный внедорожник с передовыми технологиями и просторным салоном.</p>
+                    
+                    <div class="car-features">
+                        <ul class="feature-list">
+                            <li>Гибридный двигатель 3.0L V6</li>
+                            <li>Полный привод</li>
+                            <li>Панорамная крыша</li>
+                            <li>Массажные кресла</li>
+                        </ul>
+                    </div>
+
+                    <details>
+                        <summary>Технологии и комфорт</summary>
+                        <div class="details-content">
+                            <p>Explorer Platinum предлагает систему Co-Pilot360 Assist+, адаптивный круиз-контроль и 12-дюймовый сенсорный экран.</p>
+                            <div class="progress-item">
+                                <label>Уровень комфорта: 92%</label>
+                                <progress value="92" max="100"></progress>
+                            </div>
+                        </div>
+                    </details>
+
+                    <aside>
+                        <strong>Интересный факт:</strong> Explorer стал первым SUV, возглавившим рейтинг продаж в США.
+                    </aside>
+
+                    <blockquote>
+                        "Идеальное сочетание роскоши, технологий и практичности для современной семьи."
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- F-150 Card -->
+            <section id="f150" class="car-card">
+                <img src="raptor.jpg" alt="Ford F-150" class="car-image">
+                <div class="car-content">
+                    <h3 class="car-name">Ford F-150 Raptor</h3>
+                    <div class="car-price">от $68,000</div>
+                    <p>Мощный пикап для экстремальных условий с выдающейся проходимостью.</p>
+                    
+                    <div class="car-features">
+                        <ul class="feature-list">
+                            <li>Двигатель 3.5L EcoBoost V6</li>
+                            <li>Полный привод 4WD</li>
+                            <li>Подвеска FOX Live Valve</li>
+                            <li>Объем кузова 1753 л</li>
+                        </ul>
+                    </div>
+
+                    <details>
+                        <summary>Внедорожные возможности</summary>
+                        <div class="details-content">
+                            <p>F-150 Raptor оснащен системой Terrain Management с 7 режимами, защитой днища и дорожным просветом 330 мм.</p>
+                            <div class="progress-item">
+                                <label>Внедорожный потенциал: 96%</label>
+                                <progress value="96" max="100"></progress>
+                            </div>
+                        </div>
+                    </details>
+
+                    <aside>
+                        <strong>Интересный факт:</strong> F-150 - самый продаваемый автомобиль в США более 40 лет.
+                    </aside>
+
+                    <blockquote>
+                        "Не просто пикап, а высокотехнологичный внедорожник для любых условий."
+                    </blockquote>
+                </div>
+            </section>
+        </div>
+
+        <section id="conclusion" class="section">
+            <h2 class="section-title">Заключение</h2>
+            <p>Каждая модель Ford демонстрирует превосходство в своем классе, предлагая уникальные преимущества для разных потребностей:</p>
+            
+            <div class="progress-item">
+                <label>Mustang GT - для скорости и эмоций</label>
+                <progress value="90" max="100"></progress>
+            </div>
+            
+            <div class="progress-item">
+                <label>Explorer Platinum - для семьи и комфорта</label>
+                <progress value="88" max="100"></progress>
+            </div>
+            
+            <div class="progress-item">
+                <label>F-150 Raptor - для работы и приключений</label>
+                <progress value="94" max="100"></progress>
+            </div>
+
+            <blockquote>
+                "Ford продолжает задавать стандарты в автомобильной индустрии, предлагая решения для самых разных потребностей и стилей жизни."
+            </blockquote>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>Лабораторная работа №2-3: Верстка таблицами и DIV</p>
+            <p>Сравнение автомобилей Ford &copy; 
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Активный класс для навигации
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
