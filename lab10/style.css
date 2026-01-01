@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tasks {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.task-btn {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.task-btn:hover {
+    background-color: #45a049;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #1976D2;
+}
+
+ul {
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+li {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+
+.even {
+    background-color: #f0f0f0;
+}
+
+.odd {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.error {
+    border: 2px solid red !important;
+}
+
+.success {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d4edda;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+.form-group input {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+}

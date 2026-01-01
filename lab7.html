@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Тест функций с выводом в консоль браузера</h2>
+
+    <button onclick="runAllTests()">▶ Запустить все тесты</button>
+    
+    <div style="margin-top: 20px;">
+        <h3>Отдельные тесты:</h3>
+        <button onclick="testIsInteger()">1. isInteger</button>
+        <button onclick="testTolower()">2. tolower</button>
+        <button onclick="testToggle()">3. toggle</button>
+        <button onclick="testGetKeys()">4. getKeys</button>
+        <button onclick="testCreateArray()">5. createArray</button>
+        <button onclick="testLogElements()">6. logElements </button>
+        <button onclick="testGetFirstLetters()">7. getFirstLetters</button>
+    </div>
+
+    <script>
+        // ========== ФУНКЦИИ ==========
+        function isInteger(num) {
+            return Number.isInteger(num);
+        }
+
+        function tolower(str) {
+            return str.toLowerCase();
+        }
+
+        function toggle(value) {
+            return !value;
+        }
+
+        function getKeys(obj) {
+            return Object.keys(obj).join(', ');
+        }
+
+        function createArray(start, end) {
+            let arr = [];
+            for (let i = start; i <= end; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+
+        function logElements(array) {
+            array.forEach(element => {
+                console.log(element); // 
+            });
+        }
+
+        function getFirstLetters(array) {
+            return array.map(str => str.charAt(0));
+        }
+
+        // ========== ТЕСТОВЫЕ ФУНКЦИИ ==========
+        function testIsInteger() {
+            console.log("=== Тест isInteger ===");
+            console.log("isInteger(42) =", isInteger(42));
+            console.log("isInteger(3.14) =", isInteger(3.14));
+            console.log("isInteger(-5) =", isInteger(-5));
+            console.log("isInteger(0) =", isInteger(0));
+            console.log("");
+        }
+
+        function testTolower() {
+            console.log("=== Тест tolower ===");
+            console.log('tolower("ПРИВЕТ МИР") =', tolower("ПРИВЕТ МИР"));
+            console.log('tolower("Hello WORLD") =', tolower("Hello WORLD"));
+            console.log('tolower("JavaScript") =', tolower("JavaScript"));
+            console.log("");
+        }
+
+        function testToggle() {
+            console.log("=== Тест toggle ===");
+            console.log("toggle(true) =", toggle(true));
+            console.log("toggle(false) =", toggle(false));
+            console.log("");
+        }
+
+        function testGetKeys() {
+            console.log("=== Тест getKeys ===");
+            const obj = { name: "Иван", age: 25, city: "Москва" };
+            console.log("Объект:", obj);
+            console.log("Ключи:", getKeys(obj));
+            console.log("");
+        }
+
+        function testCreateArray() {
+            console.log("=== Тест createArray ===");
+            console.log("createArray(3, 8) =", createArray(3, 8));
+            console.log("createArray(-2, 2) =", createArray(-2, 2));
+            console.log("");
+        }
+
+        function testLogElements() {
+            console.log("=== Тест logElements (смотрите вывод ниже) ===");
+            const arr = [10, 20, 30, 40];
+            console.log("Массив:", arr);
+            console.log("Вывод каждого элемента:");
+            logElements(arr);  
+            console.log("");
+        }
+
+        function testGetFirstLetters() {
+            console.log("=== Тест getFirstLetters ===");
+            const words = ["Яблоко", "Банан", "Вишня", "Груша"];
+            console.log("Массив строк:", words);
+            console.log("Первые буквы:", getFirstLetters(words));
+            console.log("");
+        }
+
+        function runAllTests() {
+            console.clear(); 
+            console.log("🚀 ЗАПУСК ВСЕХ ТЕСТОВ\n");
+            testIsInteger();
+            testTolower();
+            testToggle();
+            testGetKeys();
+            testCreateArray();
+            testGetFirstLetters();
+            testLogElements();
+            console.log(" Все тесты завершены!");
+        }
+
+        // Автозапуск при загрузке страницы
+        window.onload = function() {
+            console.log("✨");
+        };
+    </script>
+</body>
+</html>

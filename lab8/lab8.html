@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List | Умный список задач</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Декоративные элементы -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Заголовок с иконкой -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-check-circle"></i>
+                <h1>Мой To-Do List</h1>
+            </div>
+            <p class="subtitle">Организуйте свой день с умом</p>
+        </div>
+        
+        <!-- Блок добавления задачи -->
+        <div class="card add-task-card">
+            <div class="card-header">
+                <h2><i class="fas fa-plus"></i> Новая задача</h2>
+                <div class="card-decoration">
+                    <span class="decoration-dot dot-1"></span>
+                    <span class="decoration-dot dot-2"></span>
+                    <span class="decoration-dot dot-3"></span>
+                </div>
+            </div>
+            
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <i class="fas fa-pencil-alt input-icon"></i>
+                    <input type="text" id="taskInput" placeholder="Что нужно сделать?">
+                </div>
+                <button id="addTaskBtn" class="btn-add">
+                    <i class="fas fa-plus-circle"></i> Добавить
+                </button>
+            </div>
+            
+            <div class="input-hint">
+                <i class="fas fa-lightbulb"></i> Нажмите Enter для быстрого добавления
+            </div>
+        </div>
+        
+        <!-- Фильтры задач -->
+        <div class="card filter-card">
+            <div class="card-header">
+                <h2><i class="fas fa-filter"></i> Фильтры задач</h2>
+            </div>
+            
+            <div class="filter-section">
+                <button id="filterAll" class="filter-btn active">
+                    <i class="fas fa-layer-group"></i> Все
+                </button>
+                <button id="filterCompleted" class="filter-btn">
+                    <i class="fas fa-check-circle"></i> Выполненные
+                </button>
+                <button id="filterUncompleted" class="filter-btn">
+                    <i class="fas fa-clock"></i> Невыполненные
+                </button>
+            </div>
+        </div>
+        
+        <!-- Статистика -->
+        <div class="stats-container">
+            <div class="stat-card stat-total">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalTasks">0</h3>
+                    <p>Всего задач</p>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-done">
+                <div class="stat-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Выполнено</p>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-pending">
+                <div class="stat-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Осталось</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Список задач -->
+        <div class="card tasks-card">
+            <div class="card-header">
+                <h2><i class="fas fa-clipboard-list"></i> Список задач</h2>
+                <div class="task-actions">
+                    <button id="clearCompletedBtn" class="btn-clear">
+                        <i class="fas fa-trash"></i> Удалить выполненные
+                    </button>
+                    <button id="clearAllBtn" class="btn-danger">
+                        <i class="fas fa-broom"></i> Очистить все
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tasks-container">
+                <ul id="taskList"></ul>
+            </div>
+            
+            <!-- Состояние пустого списка -->
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-clipboard"></i>
+                <h3>Список пуст</h3>
+                <p>Добавьте свою первую задачу!</p>
+            </div>
+        </div>
+        
+        <!-- Информация о сохранении -->
+        <div class="info-box">
+            <i class="fas fa-database"></i>
+            <p>Ваши задачи автоматически сохраняются в браузере</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 2 - jQuery</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .additional {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border-radius: 5px;
+        }
+        
+        #color-box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Задание 2: Работа с событиями и формами</h1>
+        
+        <div class="form-group">
+            <label>Имя:</label>
+            <input type="text" id="name">
+        </div>
+        
+        <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" id="password">
+        </div>
+        
+        <button id="submit-btn">Отправить</button>
+        
+        <div id="greeting"></div>
+        
+        
+        <div class="additional">
+            <h3>Дополнительное задание</h3>
+            <p>Нажмите на кнопки для эффектов:</p>
+            <button id="animate-btn">Анимация</button>
+            <button id="hide-btn">Скрыть/Показать</button>
+            
+            <div id="color-box"></div>
+            <p id="toggle-text">Этот текст можно скрыть/показать</p>
+        </div>
+        
+        <p><a href="task1.html">← Задание 1</a> | <a href="index.html">На главную →</a></p>
+    </div>
+    
+    <script src="task2.js"></script>
+</body>
+</html>
